@@ -4,6 +4,7 @@
   "description": "nightly api",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node-dev --transpileOnly --ignore-watch node_modules index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
