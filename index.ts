@@ -12,5 +12,5 @@ App.get("/", (request, response) => {
 });
 
 App.listen(3000, () => {
-  console.log("🚀 Server started on http://localhost:3000");
+  console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
