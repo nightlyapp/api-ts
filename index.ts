@@ -11,6 +11,6 @@ App.get("/", (request, response) => {
   return response.json({ message: "Hello, TypeScript!" });
 });
 
-App.listen(3000, () => {
+App.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);
 });

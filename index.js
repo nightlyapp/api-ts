@@ -13,6 +13,6 @@ configuration_1.sequelize.sync();
 app_1.default.get("/", (request, response) => {
     return response.json({ message: "Hello, TypeScript!" });
 });
-app_1.default.listen(3000, () => {
+app_1.default.listen(PORT, () => {
     console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
