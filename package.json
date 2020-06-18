@@ -2,11 +2,11 @@
   "name": "nightly-api",
   "version": "1.0.0",
   "description": "nightly api",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "tsc",
     "prestart": "npm i",
-    "start": "node index.js",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
