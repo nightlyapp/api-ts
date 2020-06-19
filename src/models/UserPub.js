@@ -14,12 +14,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Pub_1 = require("./Pub");
 const User_1 = require("./User");
 let UserPub = class UserPub extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.id = 0;
-        this.pubId = 0;
-        this.userId = 0;
-    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -29,12 +23,12 @@ __decorate([
 __decorate([
     sequelize_typescript_1.ForeignKey(() => Pub_1.Pub),
     sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], UserPub.prototype, "pubId", void 0);
 __decorate([
     sequelize_typescript_1.ForeignKey(() => User_1.User),
     sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], UserPub.prototype, "userId", void 0);
 UserPub = __decorate([
     sequelize_typescript_1.Table

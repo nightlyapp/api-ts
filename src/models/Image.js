@@ -12,14 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Image = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 let Image = class Image extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.name = "";
-        this.description = "";
-        this.creationDate = new Date();
-        this.updatedOn = new Date();
-        this.deletionDate = new Date();
-    }
 };
 __decorate([
     sequelize_typescript_1.AllowNull(false),

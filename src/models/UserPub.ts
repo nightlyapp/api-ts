@@ -13,13 +13,13 @@ import { User } from "./User";
 export class UserPub extends Model<UserPub> {
   @PrimaryKey
   @Column({ autoIncrement: true })
-  id: number = 0;
+  id!: number;
 
   @ForeignKey(() => Pub)
   @Column
-  pubId: number = 0;
+  pubId!: string;
 
   @ForeignKey(() => User)
   @Column
-  userId: number = 0;
+  userId!: string;
 }

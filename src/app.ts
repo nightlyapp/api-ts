@@ -1,6 +1,7 @@
-import express from "express";
+import express, { json } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import helmet from "helmet";
 import Routes from "./config/Routes";
 import cors from "cors";
 dotenv.config();
@@ -16,6 +17,8 @@ class App {
   }
 
   private config(): void {
+    this.app.use(helmet());
+    this.app.use(json());
     this.app.use(cors());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));

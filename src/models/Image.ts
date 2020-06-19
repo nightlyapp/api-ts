@@ -20,18 +20,18 @@ import { Geolocation } from "./Geolocation";
 export class Image extends Model<Image> {
   @AllowNull(false)
   @Column
-  name: string = "";
+  name!: string;
 
   @AllowNull(false)
   @Column(DataType.TEXT)
-  description: string = "";
+  description!: string;
 
   @CreatedAt
-  creationDate: Date = new Date();
+  creationDate!: Date;
 
   @UpdatedAt
-  updatedOn: Date = new Date();
+  updatedOn!: Date;
 
   @DeletedAt
-  deletionDate: Date = new Date();
+  deletionDate!: Date;
 }
