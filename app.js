@@ -11,21 +11,25 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 configuration_1.sequelize.sync({ force: true });
 app_1.default.use("/", express_1.default.static(__dirname + "/website"));
-// App.use("*", function (req, res, next) {
-//   res.status(404);
-//   // respond with html page
-//   if (req.accepts("html")) {
-//     res.redirect("/");
-//     return;
-//   }
-//   // respond with json
-//   if (req.accepts("json")) {
-//     res.send({ error: "Not found" });
-//     return;
-//   }
-//   // default to plain-text. send()
-//   res.type("txt").send("Not found");
-// });
+app_1.default.use("*", function (req, res, next) {
+    if (req.secure)
+        next();
+    else
+        res.redirect(`https://${req.hostname}${req.url}`);
+    res.status(404);
+    // respond with html page
+    if (req.accepts("html")) {
+        res.redirect(`https://${req.hostname}`);
+        return;
+    }
+    // respond with json
+    if (req.accepts("json")) {
+        res.send({ error: "Not found" });
+        return;
+    }
+    // default to plain-text. send()
+    res.type("txt").send("Not found");
+});
 app_1.default.listen(PORT, () => {
     console.log(`🚀 Server started on https://nightly.com.br:${PORT}`);
 });
