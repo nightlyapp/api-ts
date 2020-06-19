@@ -9,24 +9,26 @@ sequelize.sync({ force: true });
 
 App.use("/", express.static(__dirname + "/website"));
 
-// App.use("*", function (req, res, next) {
-//   res.status(404);
+App.use("*", function (req, res, next) {
+  if (req.secure) next();
+  else res.redirect(`https://${req.hostname}${req.url}`);
+  res.status(404);
 
-//   // respond with html page
-//   if (req.accepts("html")) {
-//     res.redirect("/");
-//     return;
-//   }
+  // respond with html page
+  if (req.accepts("html")) {
+    res.redirect(`https://${req.hostname}`);
+    return;
+  }
 
-//   // respond with json
-//   if (req.accepts("json")) {
-//     res.send({ error: "Not found" });
-//     return;
-//   }
+  // respond with json
+  if (req.accepts("json")) {
+    res.send({ error: "Not found" });
+    return;
+  }
 
-//   // default to plain-text. send()
-//   res.type("txt").send("Not found");
-// });
+  // default to plain-text. send()
+  res.type("txt").send("Not found");
+});
 
 App.listen(PORT, () => {
   console.log(`🚀 Server started on https://nightly.com.br:${PORT}`);
