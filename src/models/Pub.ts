@@ -11,37 +11,52 @@ import {
   ForeignKey,
   HasMany,
   HasOne,
+  IsUUID,
+  PrimaryKey,
+  AutoIncrement,
+  BeforeCreate,
 } from "sequelize-typescript";
 import { User } from "./User";
 import { UserPub } from "./UserPub";
 import { Geolocation } from "./Geolocation";
+import { uuid } from "uuidv4";
 // import { TinyIntegerDataType } from "sequelize/types";
 
 @Table
 export class Pub extends Model<Pub> {
+  @IsUUID(4)
+  @PrimaryKey
+  @Column
+  id!: string;
+
   @AllowNull(false)
   @Column
-  name: string = "";
+  name!: string;
 
   @AllowNull(false)
   @Column(DataType.TEXT)
-  description: string = "";
+  description!: string;
 
   @Column(DataType.TINYINT)
-  isOpen: Boolean = true;
+  isOpen!: Boolean;
 
   @HasOne(() => Geolocation)
-  geolocation: Geolocation = new Geolocation();
+  geolocation!: Geolocation;
 
   @CreatedAt
-  creationDate: Date = new Date();
+  creationDate!: Date;
 
   @UpdatedAt
-  updatedOn: Date = new Date();
+  updatedOn!: Date;
 
   @DeletedAt
-  deletionDate: Date = new Date();
+  deletionDate!: Date;
 
   @BelongsToMany(() => User, () => UserPub)
-  users: User[] = new Array<User>();
+  users!: User[];
+
+  @BeforeCreate
+  static createId(pub: Pub) {
+    pub.id = uuid();
+  }
 }

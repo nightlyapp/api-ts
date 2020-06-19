@@ -17,27 +17,27 @@ import { Pub } from "./Pub";
 @Table
 export class Geolocation extends Model<Geolocation> {
   @Column(DataType.TEXT)
-  address: string = "";
+  address!: string;
 
   @Column(DataType.FLOAT)
-  latitude: number = 0;
+  latitude!: number;
 
   @Column(DataType.FLOAT)
-  longitude: Date = new Date();
+  longitude!: number;
 
   @ForeignKey(() => Pub)
   @Column
-  pubId: number = 0;
+  pubId!: string;
 
   @BelongsTo(() => Pub)
-  pub: Pub = new Pub();
+  pub!: Pub;
 
   @CreatedAt
-  creationDate: Date = new Date();
+  creationDate!: Date;
 
   @UpdatedAt
-  updatedOn: Date = new Date();
+  updatedOn!: Date;
 
   @DeletedAt
-  deletionDate: Date = new Date();
+  deletionDate!: Date;
 }

@@ -14,18 +14,13 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const Pub_1 = require("./Pub");
 const UserPub_1 = require("./UserPub");
 let User = class User extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.name = "";
-        this.number = 0;
-        this.birthday = new Date();
-        this.gender = "";
-        this.creationDate = new Date();
-        this.updatedOn = new Date();
-        this.deletionDate = new Date();
-        this.pubs = new Array();
-    }
 };
+__decorate([
+    sequelize_typescript_1.IsUUID(4),
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], User.prototype, "id", void 0);
 __decorate([
     sequelize_typescript_1.AllowNull(false),
     sequelize_typescript_1.Column,

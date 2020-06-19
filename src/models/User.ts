@@ -9,6 +9,8 @@ import {
   DataType,
   AllowNull,
   BelongsToMany,
+  IsUUID,
+  PrimaryKey,
 } from "sequelize-typescript";
 import { Pub } from "./Pub";
 import { UserPub } from "./UserPub";
@@ -16,28 +18,33 @@ import { Geolocation } from "./Geolocation";
 
 @Table
 export class User extends Model<User> {
+  @IsUUID(4)
+  @PrimaryKey
+  @Column
+  id!: string;
+
   @AllowNull(false)
   @Column
-  name: string = "";
+  name!: string;
 
   @Column
-  number: number = 0;
+  number!: number;
 
   @Column
-  birthday: Date = new Date();
+  birthday!: Date;
 
   @Column
-  gender: string = "";
+  gender!: string;
 
   @CreatedAt
-  creationDate: Date = new Date();
+  creationDate!: Date;
 
   @UpdatedAt
-  updatedOn: Date = new Date();
+  updatedOn!: Date;
 
   @DeletedAt
-  deletionDate: Date = new Date();
+  deletionDate!: Date;
 
   @BelongsToMany(() => Pub, () => UserPub)
-  pubs: Pub[] = new Array<Pub>();
+  pubs!: Pub[];
 }

@@ -11,7 +11,8 @@ export class PubController {
 
   public getPub(req: Request, res: Response) {
     const id = req.params.id;
-    Pub.findOne({ where: { id } })
+    console.log(id);
+    Pub.findOne({ where: { id }, include: [Geolocation] })
       .then((pub) => res.json(pub))
       .catch((err: Error) => res.sendStatus(500).send(err));
   }
@@ -21,7 +22,7 @@ export class PubController {
       .then((pub: Pub) => {
         res.json(pub);
       })
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .catch((err: Error) => res.status(500).send(err));
   }
 
   public updatePub(req: Request, res: Response) {

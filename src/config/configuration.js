@@ -11,16 +11,20 @@ exports.sequelize = new sequelize_typescript_1.Sequelize({
     username: process.env.USER,
     password: process.env.PASS,
     host: process.env.HOST,
-    dialect: 'mysql',
-    storage: ':memory:',
+    timezone: "-03:00",
+    dialect: "mysql",
+    storage: ":memory:",
     dialectOptions: {
         dateStrings: true,
-        typeCast: true
+        typeCast: true,
     },
 });
 exports.sequelize.addModels([User_1.User, Geolocation_1.Geolocation, Pub_1.Pub, UserPub_1.UserPub]);
-exports.sequelize.authenticate().then(() => {
-    console.log('conectado com sucesso!');
-}).catch((err) => {
+exports.sequelize
+    .authenticate()
+    .then(() => {
+    console.log("conectado com sucesso!");
+})
+    .catch((err) => {
     console.log(`Falha ao se conectar: ${err}`);
 });
