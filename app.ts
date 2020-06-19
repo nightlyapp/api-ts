@@ -12,5 +12,5 @@ App.get("/", (request, response) => {
 });
 
 App.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
+  console.log(`🚀 Server started on https://nightly.com.br:${PORT}`);
 });
