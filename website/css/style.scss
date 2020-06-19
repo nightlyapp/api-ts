@@ -1,0 +1,208 @@
+@import url("reset.css");
+
+$width: 15px;
+$height: 15px;
+
+$bounce_height: 30px;
+
+.container {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 26%,
+      transparent 26%
+    ),
+    linear-gradient(-45deg, #7800bd 0%, #7800bd 50%, rgb(24, 24, 24) 50%)
+      no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .container__title {
+    color: white;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: left;
+    // padding: 20px 0;
+    width: 100%;
+    max-width: 500px;
+    -webkit-animation: 2s ease 0s normal forwards 1 fadeinDelay;
+    animation: 2s ease 0s normal forwards 1 fadeinDelay;
+  }
+  .container__subtitle {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    // padding: 20px 0;
+    width: 100%;
+    max-width: 500px;
+    -webkit-animation: 3s ease 0s normal forwards 1 fadeinDelay;
+    animation: 3s ease 0s normal forwards 1 fadeinDelay;
+  }
+  .main {
+    max-width: 500px;
+    width: 95%;
+    height: 500px;
+    z-index: 2;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px black;
+    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background: rgb(24, 24, 24);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    animation: fadeIn 1s ease;
+    .main__bg-first {
+      height: 100%;
+      width: 100%;
+      background-image: url(../assets/map-background.jpg);
+      background-size: cover;
+    }
+    .main__bg-second {
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      border: 10px solid rgb(255, 255, 255);
+      border-top: 0;
+      background-image: url(../assets/beer-background.jpg);
+      background-size: cover;
+      border-bottom-right-radius: 150px;
+      border-bottom-left-radius: 150px;
+    }
+  }
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  font-family: Montserrat;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgb(24, 24, 24);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .beer {
+    width: 50px;
+    position: relative;
+    height: 0;
+    padding: 0; /* reset */
+    padding-bottom: 50px;
+    z-index: 1;
+    img {
+      position: relative;
+      z-index: 9999;
+      object-fit: contain;
+      width: 50px;
+      height: 50px;
+    }
+    .bounceball {
+      z-index: 3;
+      position: absolute;
+      content: "";
+      display: block;
+      // top: -50px;
+      left: 15px;
+      width: $width;
+      height: $height;
+      border-radius: 50%;
+      background-color: #cfaf00;
+      border-top: 5px solid rgb(255, 255, 255);
+      // border-right: 3px solid rgb(255, 255, 255);
+      box-sizing: border-box;
+      transform-origin: 50%;
+      animation: bounce 500ms alternate infinite ease;
+      transform: rotate(130deg);
+    }
+  }
+}
+.text {
+  color: #fbae17;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+@keyframes bounce {
+  0% {
+    top: $bounce_height;
+    height: 5px;
+    border-radius: 50%;
+    // transform: scaleX(2);
+  }
+  35% {
+    height: $height;
+    // border-radius: 70px;
+    border-radius: 60px 20px 60px 60px;
+    // transform: scaleX(1);
+  }
+  100% {
+    top: -30px;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinDelay {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeinDelay {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
