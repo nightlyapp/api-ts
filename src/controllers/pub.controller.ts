@@ -6,18 +6,11 @@ import { FastInfo } from "../models/FastInfo";
 export class PubController {
   public index(req: Request, res: Response) {
     Pub.findAll<Pub>({
-      include: [
-        Geolocation,
-        {
-          model: FastInfo,
-          attributes: { include: ["attribute"] },
-          separate: true,
-          duplicating: true,
-        },
-      ],
+      include: [Geolocation, FastInfo],
+      subQuery: false,
     })
       .then((pubs: Pub[]) => res.json(pubs))
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .catch((err: Error) => res.status(500).send(err));
   }
 
   public getPub(req: Request, res: Response) {

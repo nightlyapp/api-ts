@@ -2,7 +2,7 @@
   "name": "nightly-api",
   "version": "1.0.0",
   "description": "nightly api",
-  "main": "app.js",
+  "main": "app.ts",
   "scripts": {
     "build": "tsc",
     "start": "node app",
