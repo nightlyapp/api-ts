@@ -9,13 +9,13 @@ const configuration_1 = require("./src/config/configuration");
 const path = require("path");
 // const app = express();
 const PORT = process.env.PORT || 3000;
-configuration_1.sequelize.sync({ force: true });
+configuration_1.sequelize.sync();
 app_1.default.use("/", express_1.default.static(__dirname + "/website"));
 app_1.default.use("*", function (req, res, next) {
-    if (req.secure)
-        next();
-    else
+    if (req.headers["x-forwarded-proto"] == "http")
         res.redirect(`https://${req.hostname}${req.url}`);
+    else
+        next();
     res.status(404);
     // respond with html page
     if (req.accepts("html")) {

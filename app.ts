@@ -5,13 +5,14 @@ const path = require("path");
 
 // const app = express();
 const PORT = process.env.PORT || 3000;
-sequelize.sync({ force: true });
+sequelize.sync();
 
 App.use("/", express.static(__dirname + "/website"));
 
 App.use("*", function (req, res, next) {
-  if (req.secure) next();
-  else res.redirect(`https://${req.hostname}${req.url}`);
+  if (req.headers["x-forwarded-proto"] == "http")
+    res.redirect(`https://${req.hostname}${req.url}`);
+  else next();
   res.status(404);
 
   // respond with html page

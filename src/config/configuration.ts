@@ -3,6 +3,8 @@ import { User } from "../models/User";
 import { Geolocation } from "../models/Geolocation";
 import { Pub } from "../models/Pub";
 import { UserPub } from "../models/UserPub";
+import { FastInfo } from "../models/FastInfo";
+import { FastInfoPub } from "../models/FastInfoPub";
 
 export const sequelize = new Sequelize({
   database: process.env.DATABASE,
@@ -18,7 +20,7 @@ export const sequelize = new Sequelize({
   },
 });
 
-sequelize.addModels([User, Geolocation, Pub, UserPub]);
+sequelize.addModels([User, Geolocation, Pub, UserPub, FastInfo, FastInfoPub]);
 
 sequelize
   .authenticate()

@@ -4,6 +4,7 @@ exports.ImageController = void 0;
 class ImageController {
     index(req, res) {
         console.log(req.body);
+        return false;
     }
 }
 exports.ImageController = ImageController;

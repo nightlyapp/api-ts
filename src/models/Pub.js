@@ -15,6 +15,8 @@ const User_1 = require("./User");
 const UserPub_1 = require("./UserPub");
 const Geolocation_1 = require("./Geolocation");
 const uuidv4_1 = require("uuidv4");
+const FastInfo_1 = require("./FastInfo");
+const FastInfoPub_1 = require("./FastInfoPub");
 // import { TinyIntegerDataType } from "sequelize/types";
 let Pub = class Pub extends sequelize_typescript_1.Model {
     static createId(pub) {
@@ -61,6 +63,10 @@ __decorate([
     sequelize_typescript_1.BelongsToMany(() => User_1.User, () => UserPub_1.UserPub),
     __metadata("design:type", Array)
 ], Pub.prototype, "users", void 0);
+__decorate([
+    sequelize_typescript_1.BelongsToMany(() => FastInfo_1.FastInfo, () => FastInfoPub_1.FastInfoPub),
+    __metadata("design:type", Array)
+], Pub.prototype, "fastInfo", void 0);
 __decorate([
     sequelize_typescript_1.BeforeCreate,
     __metadata("design:type", Function),

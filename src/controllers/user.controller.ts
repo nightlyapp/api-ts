@@ -6,7 +6,7 @@ export class UserController {
   public index(req: Request, res: Response) {
     User.findAll<User>({})
       .then((users: User[]) => res.json(users))
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .catch((err: Error) => res.status(500).send(err));
   }
 
   public getUser(req: Request, res: Response) {
@@ -15,15 +15,15 @@ export class UserController {
       .then((user) => {
         res.json(user);
       })
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .catch((err: Error) => res.status(500).send(err));
   }
 
   public postUser(req: Request, res: Response) {
     const user = req.body;
-
+    console.log(user);
     User.create(user)
-      .then((data: any) => res.json(data))
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .then((data: User) => res.json(data))
+      .catch((err: Error) => res.status(500).send(err));
   }
 
   public updateUser(req: Request, res: Response) {
@@ -32,6 +32,6 @@ export class UserController {
 
     User.update(user, { where: { id } })
       .then((data: any) => res.json(data))
-      .catch((err: Error) => res.sendStatus(500).send(err));
+      .catch((err: Error) => res.status(500).send(err));
   }
 }

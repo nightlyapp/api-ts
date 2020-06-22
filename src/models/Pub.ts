@@ -8,18 +8,17 @@ import {
   DataType,
   AllowNull,
   BelongsToMany,
-  ForeignKey,
-  HasMany,
   HasOne,
   IsUUID,
   PrimaryKey,
-  AutoIncrement,
   BeforeCreate,
 } from "sequelize-typescript";
 import { User } from "./User";
 import { UserPub } from "./UserPub";
 import { Geolocation } from "./Geolocation";
 import { uuid } from "uuidv4";
+import { FastInfo } from "./FastInfo";
+import { FastInfoPub } from "./FastInfoPub";
 // import { TinyIntegerDataType } from "sequelize/types";
 
 @Table
@@ -54,6 +53,9 @@ export class Pub extends Model<Pub> {
 
   @BelongsToMany(() => User, () => UserPub)
   users!: User[];
+
+  @BelongsToMany(() => FastInfo, () => FastInfoPub)
+  fastInfo!: FastInfo[];
 
   @BeforeCreate
   static createId(pub: Pub) {

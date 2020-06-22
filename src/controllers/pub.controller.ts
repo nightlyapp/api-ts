@@ -1,10 +1,21 @@
 import { Pub } from "../models/Pub";
 import { Geolocation } from "../models/Geolocation";
 import { Request, Response } from "express";
+import { FastInfo } from "../models/FastInfo";
 
 export class PubController {
   public index(req: Request, res: Response) {
-    Pub.findAll<Pub>({ include: [Geolocation] })
+    Pub.findAll<Pub>({
+      include: [
+        Geolocation,
+        {
+          model: FastInfo,
+          attributes: { include: ["attribute"] },
+          separate: true,
+          duplicating: true,
+        },
+      ],
+    })
       .then((pubs: Pub[]) => res.json(pubs))
       .catch((err: Error) => res.sendStatus(500).send(err));
   }
@@ -12,7 +23,7 @@ export class PubController {
   public getPub(req: Request, res: Response) {
     const id = req.params.id;
     console.log(id);
-    Pub.findOne({ where: { id }, include: [Geolocation] })
+    Pub.findOne({ where: { id }, include: [Geolocation, FastInfo] })
       .then((pub) => res.json(pub))
       .catch((err: Error) => res.sendStatus(500).send(err));
   }

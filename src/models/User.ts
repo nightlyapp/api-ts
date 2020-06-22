@@ -2,19 +2,18 @@ import {
   Table,
   Column,
   Model,
-  HasMany,
   CreatedAt,
   UpdatedAt,
   DeletedAt,
-  DataType,
   AllowNull,
   BelongsToMany,
   IsUUID,
   PrimaryKey,
+  BeforeCreate,
 } from "sequelize-typescript";
 import { Pub } from "./Pub";
 import { UserPub } from "./UserPub";
-import { Geolocation } from "./Geolocation";
+import { uuid } from "uuidv4";
 
 @Table
 export class User extends Model<User> {
@@ -47,4 +46,9 @@ export class User extends Model<User> {
 
   @BelongsToMany(() => Pub, () => UserPub)
   pubs!: Pub[];
+
+  @BeforeCreate
+  static createId(pub: Pub) {
+    pub.id = uuid();
+  }
 }

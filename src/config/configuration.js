@@ -6,6 +6,8 @@ const User_1 = require("../models/User");
 const Geolocation_1 = require("../models/Geolocation");
 const Pub_1 = require("../models/Pub");
 const UserPub_1 = require("../models/UserPub");
+const FastInfo_1 = require("../models/FastInfo");
+const FastInfoPub_1 = require("../models/FastInfoPub");
 exports.sequelize = new sequelize_typescript_1.Sequelize({
     database: process.env.DATABASE,
     username: process.env.USER,
@@ -19,7 +21,7 @@ exports.sequelize = new sequelize_typescript_1.Sequelize({
         typeCast: true,
     },
 });
-exports.sequelize.addModels([User_1.User, Geolocation_1.Geolocation, Pub_1.Pub, UserPub_1.UserPub]);
+exports.sequelize.addModels([User_1.User, Geolocation_1.Geolocation, Pub_1.Pub, UserPub_1.UserPub, FastInfo_1.FastInfo, FastInfoPub_1.FastInfoPub]);
 exports.sequelize
     .authenticate()
     .then(() => {
